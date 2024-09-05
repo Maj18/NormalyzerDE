@@ -223,7 +223,7 @@ getVerifiedNormalyzerObject <- function(
     
     designMatrix <- designMatrix[designMatrix[[sampleCol]] %in% colnames(lowCountSampleFiltered), ]
     
-    # If no samples left after omitting, stop
+    # If no samples left after omitting, stop  
     verifyMultipleSamplesPresent(
         lowCountSampleFiltered, 
         groups, 
@@ -309,7 +309,7 @@ verifyValidNumbers <- function(rawDataOnly, groups, noLogTransform=FALSE, quiet=
     # Fields expected to contain numbers in decimal or scientific notation, or containing NA or null
     validPatterns <- c("\\d+(\\.\\d+)?", "NA", "\"NA\"", "null", "\\d+(\\.\\d+)?[eE]([\\+\\-])?\\d+$", "")
     
-    regexPattern <- sprintf("^(%s)$", paste(validPatterns, collapse="|"))
+    regexPattern <- sprintf("(%s)", paste(validPatterns, collapse="|"))
     nonMatchIndices <- grep(regexPattern, rawDataOnly, perl=TRUE, ignore.case=TRUE, invert = TRUE)
     naIndices <- which(is.na(rawDataOnly))
     invalidNonNAIndices <- nonMatchIndices[!nonMatchIndices %in% naIndices]
